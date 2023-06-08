@@ -62,16 +62,17 @@
         <div class="col">
           {{ .id }}
           <div class="project">
-            <h1>{{ .title }}</h1>
-            <p>{{ .content }}</p>
+            <img src="https://source.unsplash.com/1000x300/?random" class="img-fluid" alt="" />
+            <h1 class="my-2">{{ .Projects.Title }}</h1>
+            <p>{{ .Projects.Desc }}</p>
           </div>
           <a href="/projects" class="btn btn-orange">back</a>
         </div>
       </div>
     </div>
 
-    <script src="public/Assets/js/project.js"></script>
-    <script src="public/Assets/js/index.js"></script>
+    <!-- <script src="public/Assets/js/project.js"></script>
+    <script src="public/Assets/js/index.js"></script> -->
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

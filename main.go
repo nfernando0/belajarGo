@@ -1,16 +1,19 @@
 package main
 
 import (
+	// "fmt"
 	"html/template"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/labstack/echo/v4"
 )
 
 type Project struct {
 	Title string
-	Content string
+	Desc string
+	Tech string
 	Author string
 	postDate string
 }
@@ -18,13 +21,13 @@ type Project struct {
 var dataProjects = []Project {
 	{
 		Title : "Hello",
-	Content: "Ini Content",
+	Desc: "Ini Content",
 	Author: "Fernando",
 	postDate: "10/10/2023",
 	},
 	{
 		Title : "Hello1",
-	Content: "Ini Content 1",
+	Desc: "Ini Content 1",
 	Author: "Fernando",
 	postDate: "10/10/2023",
 	},
@@ -96,7 +99,8 @@ func projectDetail(c echo.Context) error {
 		if id == i {
 			projectDetail = Project{
 				Title: data.Title,
-				Content: data.Content,
+				Desc: data.Desc,
+				Tech: data.Tech,
 				postDate: data.postDate,
 				Author: data.Author,
 			}
@@ -129,10 +133,26 @@ func formAddProjects (c echo.Context) error {
 // nambah project
 func addProjects(c echo.Context) error {
 	title := c.FormValue("title")
-	content := c.FormValue("desc")
+	desc := c.FormValue("desc")
+	Author := c.FormValue("author")
+	tech := c.FormValue("tech")
 
 	println("title : " + title)
-	println("content : " + content)
+	println("desc : " + desc)
+	println("author : " + Author)
+	println("Tech : " + tech)
+
+	var newProject = Project {
+		Title: title,
+		Desc: desc,
+		Author: "Anonymous",
+		Tech: tech,
+		postDate: time.Now().String(),
+	}
+
+	dataProjects = append(dataProjects, newProject)
+
+	// fmt.Println(dataProjects)
 
 	return c.Redirect(http.StatusMovedPermanently, "/projects")
 }
