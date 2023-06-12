@@ -26,6 +26,59 @@
         </div>
       </div>
     </nav>
+
+    <div class="container mt-5 d-flex justify-content-between border-1 border p-2 rounded shadow-sm align-items-center z-3">
+      <h4>My Blogs</h4>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Blog</button>
+    </div>
+
+    <!-- Modal Add Blogs -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Blog</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/blogs" method="POST">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title Blog</label>
+                <input type="text" class="form-control" name="title" id="title" required />
+              </div>
+              <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" style="resize: none" name="content" id="content" rows="3" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog -->
+
+    <div class="container mt-5">
+      <div class="row">
+        {{ range $index, $data := .Blogs }}
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <img src="..." class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">{{ $data.Title }}</h5>
+              <p class="card-text">{{ $data.Content }}</p>
+              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
